@@ -3,7 +3,8 @@ const router = express.Router();
 
 //import methods
 const { signUp } = require("../controllers/user.js");
+const { userSignupValidator } = require("../validator/index");
 
-router.post("/", signUp);
+router.post("/signup", userSignupValidator, signUp);
 
 module.exports = router;

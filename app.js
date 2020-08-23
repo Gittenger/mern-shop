@@ -7,6 +7,7 @@ const morgan = require("morgan");
 require("dotenv").config();
 
 //import routes
+const authRoutes = require("./routes/auth.js");
 const userRoutes = require("./routes/user.js");
 
 //initialize app
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 
 //routes middleware
+app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 
 const port = process.env.PORT || 8000;

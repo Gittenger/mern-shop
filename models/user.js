@@ -52,6 +52,9 @@ userSchema
   });
 
 userSchema.methods = {
+  authenticate: function (plainTextPw) {
+    return this.encryptPassword(plainTextPw) === this.hashed_password;
+  },
   encryptPassword: function (password) {
     if (!password) return "";
     try {

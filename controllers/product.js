@@ -103,7 +103,7 @@ exports.update = (req, res) => {
 					error: errorHandler(err),
 				});
 			}
-			res.json({ result });
+			return res.json({ result });
 		});
 	});
 };
@@ -116,7 +116,7 @@ exports.remove = (req, res) => {
 				error: errorHandler(err),
 			});
 		}
-		res.json({
+		return res.json({
 			// deletedProduct,
 			message: "Product deleted successfully",
 		});

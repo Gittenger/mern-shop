@@ -60,7 +60,7 @@ exports.signIn = (req, res) => {
 
 exports.signOut = (req, res) => {
 	res.clearCookie("t");
-	res.json({
+	return res.json({
 		message: "signout success",
 	});
 };

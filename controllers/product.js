@@ -213,9 +213,17 @@ exports.listBySearch = (req, res) => {
 					error: "Products not found",
 				});
 			}
-			res.json({
+			return res.json({
 				size: data.length,
 				data,
 			});
 		});
+};
+
+exports.photo = (req, res, next) => {
+	if (req.product.photo.data) {
+		res.set("Content-Type", req.product.photo.contentType);
+		res.send(req.product.photo.data);
+	}
+	next();
 };

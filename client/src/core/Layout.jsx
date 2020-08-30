@@ -14,10 +14,7 @@ const Layout = ({
 			<h2>{title}</h2>
 			<p className="lead">{description}</p>
 		</div>
-		<div className={className}>
-			{API}
-			{children}
-		</div>
+		<div className={className}>{children}</div>
 	</>
 );
 

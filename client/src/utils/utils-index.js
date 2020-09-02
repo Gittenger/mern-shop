@@ -1,6 +1,7 @@
 import { API } from "../config-env";
 
 export const auth = {
+	//signup and signin
 	authUser: function (user, options) {
 		return fetch(`${API}/${options.authRoute}`, {
 			method: "POST",

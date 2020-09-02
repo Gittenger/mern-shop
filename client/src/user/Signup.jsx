@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Layout from "../core/Layout";
 import { Link } from "react-router-dom";
-import { signup } from "../utils/utils-index";
+import { auth } from "../utils/utils-index";
+
+const { authUser } = auth;
 
 const Signup = () => {
 	const [values, setValues] = useState({
@@ -25,7 +27,7 @@ const Signup = () => {
 	const clickSubmit = (event) => {
 		event.preventDefault();
 		setValues({ ...values, error: "" });
-		signup({ name, email, password }).then((res) => {
+		authUser({ name, email, password }, { authRoute: "signup" }).then((res) => {
 			if (res.error) {
 				setValues({ ...values, error: res.error, success: false });
 			} else {

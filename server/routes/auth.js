@@ -3,15 +3,15 @@ const router = express.Router();
 
 //import methods
 const {
-  signUp,
-  signIn,
-  signOut,
-  requireSignIn,
+	signUp,
+	signIn,
+	signOut,
+	requireSignIn,
 } = require("../controllers/auth.js");
 const { userSignupValidator } = require("../validator/index");
 
 router.post("/signup", userSignupValidator, signUp);
 router.post("/signin", signIn);
-router.post("/signout", signOut);
+router.get("/signout", signOut);
 
 module.exports = router;

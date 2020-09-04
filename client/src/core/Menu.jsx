@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { auth } from "../utils/utils-index";
 
 const { removeAuthToken, checkAuthToken } = auth;
+const isAdmin = () => (checkAuthToken() ? checkAuthToken().user.role : false);
 
 const isActive = (history, path) => {
 	if (history.location.pathname === path) {
@@ -26,8 +27,12 @@ const Menu = ({ history }) => (
 			<li className="nav-item">
 				<Link
 					className="nav-link"
-					style={isActive(history, "/dashboard")}
-					to="/dashboard"
+					style={
+						isAdmin()
+							? isActive(history, "/admin/dashboard")
+							: isActive(history, "/user/dasboard")
+					}
+					to={isAdmin() ? "/admin/dashboard" : "/user/dashboard"}
 				>
 					Dashboard
 				</Link>

@@ -5,30 +5,30 @@ import { auth } from "../utils/utils-index";
 
 const { checkAuthToken } = auth;
 
-const Dashboard = () => {
+const AdminDashboard = () => {
 	const {
 		user: { _id, name, email, role },
 	} = checkAuthToken();
 
-	const userLinks = () => (
+	const adminLinks = () => (
 		<div className="card">
-			<h4 className="card-header">User Links</h4>
+			<h4 className="card-header">Admin Links</h4>
 			<ul className="list-group">
 				<li className="list-group-item">
-					<Link className="nav-link" to="/cart">
-						My Cart
+					<Link className="nav-link" to="/create/category">
+						Create category
 					</Link>
 				</li>
 				<li className="list-group-item">
-					<Link className="nav-link" to="/profile/update">
-						Update profile
+					<Link className="nav-link" to="/create/product">
+						Create products
 					</Link>
 				</li>
 			</ul>
 		</div>
 	);
 
-	const userInfo = () => (
+	const adminInfo = () => (
 		<div className="card mb-5">
 			{role === 1 ? (
 				<h3 className="card-header">Admin dashboard</h3>
@@ -46,28 +46,14 @@ const Dashboard = () => {
 		</div>
 	);
 
-	const purchaseHistory = () => (
-		<div className="card mb-5">
-			<div className="card">
-				<h3 className="card-header">Purchase history</h3>
-				<ul className="list-group">
-					<li className="list-group-item">history</li>
-				</ul>
-			</div>
-		</div>
-	);
-
 	return (
 		<Layout title="Dashboard" description={`Hello ${name}`} className="container">
 			<div className="row">
-				<div className="col-3">{userLinks()}</div>
-				<div className="col-9">
-					{userInfo()}
-					{purchaseHistory()}
-				</div>
+				<div className="col-3">{adminLinks()}</div>
+				<div className="col-9">{adminInfo()}</div>
 			</div>
 		</Layout>
 	);
 };
 
-export default Dashboard;
+export default AdminDashboard;

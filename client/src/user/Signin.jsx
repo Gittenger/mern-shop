@@ -3,7 +3,7 @@ import Layout from "../core/Layout";
 import { Redirect } from "react-router-dom";
 import { auth } from "../utils/utils-index";
 
-const { authUser, setAuthToken } = auth;
+const { authUser, setAuthToken, checkAuthToken } = auth;
 
 const Signin = () => {
 	const [values, setValues] = useState({
@@ -59,7 +59,18 @@ const Signin = () => {
 			</div>
 		);
 
-	const redirectUser = () => (redirectToReferrer ? <Redirect to="/" /> : "");
+	const redirectUser = () => {
+		if (redirectToReferrer) {
+			if (checkAuthToken()) {
+				const {
+					user: { role },
+				} = checkAuthToken();
+				if (role === 1) {
+					return <Redirect to="/admin/dashboard" />;
+				} else if (role === 0) return <Redirect to="/user/dashboard" />;
+			}
+		} else return "";
+	};
 
 	const signInForm = () => (
 		<form>
